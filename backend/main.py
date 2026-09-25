@@ -28,7 +28,8 @@ app.add_middleware(
 )
 
 # TODO(interview): replace this with the prompt for the idea you choose.
-SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and briefly." #The instructions for the AI.
+SYSTEM_PROMPT = "You need to summarize the user's message into 1 sentence as a Vampire tone." \
+" Do it only in English." #The instructions for the AI.
 
 #A request must have a message that isn't empty and isn't too long
 class ChatRequest(BaseModel):

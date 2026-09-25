@@ -14,9 +14,9 @@ BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000").rstrip("/")
 TIMEOUT_SECONDS = 60 #don't wait more than 60 seconds for the backend
 
 #set the page's tab title, icon, and heading.
-st.set_page_config(page_title="GenAI Interview Starter", page_icon="💬")
-st.title("GenAI Interview Starter")
-st.caption("Replace this title and caption with your idea.")
+st.set_page_config(page_title="Vampire Summary", page_icon="💬")
+st.title("Vampire Summary")
+st.caption("Get a vampire's summary on any topic!")
 
 #sends the message to /api/chat:
 def ask_backend(message: str) -> str:
@@ -33,7 +33,7 @@ def ask_backend(message: str) -> str:
     except ValueError:
         detail = f"Backend error ({resp.status_code})."
     if isinstance(detail, list):  # FastAPI validation errors come as a list
-        detail = "Your message is empty or too long."
+        detail = "Your message is empty or too long." #max_input_chars in config file is the limit.
     return f"⚠️ {detail}"
 
 #session_state is the memory that survives, and here it keeps the chat history( because the page is redrawn every time the user types a message).
