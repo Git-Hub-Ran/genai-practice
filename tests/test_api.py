@@ -62,6 +62,7 @@ def test_chat_hides_llm_error_details(client):
     assert resp.status_code == 503
     assert resp.json()["detail"] == "The AI service is busy. Try again in a moment."
 
+#Added after the interview time slot:
 #Test that a message with only spaces is treated as empty and returns 422 (invalid input).
 def test_chat_rejects_whitespace_only_message(client):
     main.app.dependency_overrides[main.get_llm] = lambda: FakeLLM("some answer")
