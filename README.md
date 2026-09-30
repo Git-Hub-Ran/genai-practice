@@ -23,6 +23,7 @@ so the API key never reaches the browser.
 - Model: gpt-5.4-mini on Azure OpenAI
 - Hosting: two Azure App Services (one for the backend, one for the frontend)
 - Secrets: locally in backend/.env, which is in .gitignore and never pushed; on Azure in the App Service settings of the backend app, which become environment variables.
+- substitution: What I used instead of the provided setup, and why: my own Azure account,  resource group and gpt-5.4-mini deployment, and my own GitHub repository, instead of the provided Azure account, Key Vault and pre-setup models. Those  belong to the employer's environment, which I don't have access to. I also used an AI tool for a spelling check at the end.
 
 ## Run locally
 
@@ -156,8 +157,13 @@ Good to know:
 - All model calls go through `llm.py`, so I can change the model or mock it in tests.
 - Users see short error messages. The details (401, 404, 429) go to the logs.
 - Input length limit and timeouts, to control cost and keep the app responsive.
-- <decisions I made for this project>
+- Streamlit over Gradio, FastAPI over Flask, gpt-5.4-mini, two App Services.
 
 ## Next steps
 
-<What I would add with more time.>
+## If I had more time
+-test prompt injection
+-handle the empty answer instead of showing a blank bubble
+-add a test that checks the output is really one sentence
+-use more than one example text
+-the frontend gives up at 60s while the backend can take 90s, so the user gets a wrong error message and a worker stays busy for nothing. I would make the frontend wait longer than the backend, or reduce the retries.
