@@ -160,8 +160,6 @@ Good to know:
 - Streamlit over Gradio, FastAPI over Flask, gpt-5.4-mini, two App Services.
 
 ## Next steps
-
-## If I had more time
 -test prompt injection
 -handle the empty answer instead of showing a blank bubble
 -add a test that checks the output is really one sentence
