@@ -54,8 +54,11 @@ def health(s: Settings = Depends(get_settings)) -> dict:
 #The main endpoint. It takes the message, sends it to the AI through llm.py, and returns the answer. 
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(request: ChatRequest, llm: LLMClient = Depends(get_llm)) -> ChatResponse:
+    stripped_message = request.message.strip()
+    if stripped_message == "":  # If the user sends an empty message, we treat it as an error.
+        raise HTTPException(status_code=422, detail="Your input is empty.")
     try:
-        answer = llm.chat(SYSTEM_PROMPT, request.message.strip())
+        answer = llm.chat(SYSTEM_PROMPT, stripped_message)
     except LLMError as exc: #If the AI fails, it returns a safe error message.
         raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
     return ChatResponse(answer=answer)
