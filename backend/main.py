@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 
 settings = get_settings()
 #creates the API itself:
-app = FastAPI(title="GenAI Interview Starter", version="0.1.0")
+app = FastAPI(title="Vampire Summary", version="0.1.0")
 
 #CORS is a security rule that says which websites may call this API.
 app.add_middleware(
@@ -27,7 +27,6 @@ app.add_middleware(
     allow_headers=["Content-Type"],
 )
 
-# TODO(interview): replace this with the prompt for the idea you choose.
 SYSTEM_PROMPT = "You need to summarize the user's message into 1 sentence as a Vampire tone." \
 " Do it only in English." #The instructions for the AI.
 

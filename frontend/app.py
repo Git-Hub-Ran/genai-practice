@@ -16,7 +16,12 @@ TIMEOUT_SECONDS = 60 #don't wait more than 60 seconds for the backend
 #set the page's tab title, icon, and heading.
 st.set_page_config(page_title="Vampire Summary", page_icon="💬")
 st.title("Vampire Summary")
-st.caption("Get a vampire's summary on any topic!")
+st.caption(
+    "Get a vampire's summary on any topic! "
+    "This is a demo of Azure OpenAI and Streamlit.\n\n The AI is instructed to summarize your message in 1 sentence, in a Vampire tone. "
+    "The AI is instructed to answer only in English, even if you write in another language."
+)
+
 
 #sends the message to /api/chat:
 def ask_backend(message: str) -> str:
